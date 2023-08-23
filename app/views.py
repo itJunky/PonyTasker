@@ -10,13 +10,17 @@ def index():
 
 # TODO Список задач
     # TODO помечать задачу выполненной
+@tasker.route('/tasklist')
+def show_tasks():
+    return render_template('tasklist.html')
+
 
 # TODO Добавление задачи (форма ввода)
 @tasker.route('/newtask', methods=['GET', 'POST'])
 def create_new_task():
     form = NewTaskForm()
     if form.validate_on_submit():
-        return redirect('/success')
+        return redirect('/tasklist')
     return render_template('newtask.html', form=form)
 
 # TODO Отображение самой задачи

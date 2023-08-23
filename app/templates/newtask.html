@@ -1,11 +1,10 @@
 <!doctype html>
+<html lang="ru">
 <title>Создайте новую задачу</title>
-форма заголовка </br>
-форма тела
 
-<form method="POST" action="/">
+<form method="POST" action="/newtask">
     {{ form.csrf_token }}
-    {{ form.title.label }} {{ form.title(size=20) }}
+    {{ form.title.label }} &emsp;&emsp;&ensp;&nbsp; {{ form.title(size=20) }}
     {% if form.title.errors %}
         <ul class="errors">
         {% for error in form.title %}
@@ -13,6 +12,8 @@
         {% endfor %}
         </ul>
     {% endif %}
-    {{ form.body.label }} {{ form.body(size=200) }}
+    </br>
+    {{ form.body.label }} &nbsp;{{ form.body(size=20) }}
+    </br>
     <input type="submit" value="Создать задачу">
 </form>
