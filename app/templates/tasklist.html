@@ -5,6 +5,9 @@
     <title>Список задач</title>
 </head>
 <body>
-  <h1>Список задач</h1>
+    <h1>Список задач</h1>
+    {% for task in tasklist %}
+        <li>{{ task }}</li>
+    {% endfor %}
 </body>
 </html>
