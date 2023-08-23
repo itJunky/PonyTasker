@@ -3,3 +3,4 @@ settings = dict(
     mysql=dict(provider='mysql', user='pony', password='pony', host='localhost',
         database='ponytasker')
 )
+secret_key = 'CHANGE_ME_FOR_PRODUCTION'
