@@ -4,10 +4,11 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 from app import tasker
-from app.settings import settings
-from pony.orm import *
+# from app.settings import settings
+# from pony.orm import *
 
-db = Database(**settings['sqlite'])
+# db = Database(**settings['sqlite'])
+# db.generate_mapping(create_tables=True)
 
 
 def print_hi(name):

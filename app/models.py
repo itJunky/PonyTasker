@@ -1,7 +1,7 @@
 from pony.orm import *
+from app.settings import settings
 
-
-db = Database()
+db = Database(**settings['sqlite'])
 
 
 class Task(db.Entity):
@@ -11,4 +11,5 @@ class Task(db.Entity):
     body = Optional(str)
 
 
-db.generate_mapping()
+set_sql_debug(True)
+db.generate_mapping(create_tables=True)
