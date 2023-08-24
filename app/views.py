@@ -40,7 +40,7 @@ def show_task(task_id):
     return render_template('task.html', task=t[0])
 
 
-# TODO Редактирование задачи
+# Редактирование задачи
 @tasker.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
     form = EditTaskForm()
