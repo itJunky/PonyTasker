@@ -13,7 +13,8 @@ def tasklist():
     return list(select(t for t in Task))
 
 
-def edittask(task, title, body):
+def edittask(task, title, body, completion):
     task.title = title
     task.body = body
+    task.completion = completion
     return print('ok')

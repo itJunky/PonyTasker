@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Edit {{ task.title }}</title>
@@ -18,6 +18,8 @@
     {% endif %}
     </br>
     {{ form.body.label }} &nbsp;{{ form.body(size=20, placeholder=task.body) }}
+    </br>
+    {{ form.completion.label }} {{ form.completion }}
     </br>
     <input type="submit" value="Сохранить задачу">
   </form>

@@ -47,7 +47,7 @@ def edit_task(task_id):
     t = select(t for t in Task if t.id == task_id)[:]
     if form.validate_on_submit():
         # TODO сохранение изменений
-        edittask(t[0], form.title.data, form.body.data)
+        edittask(t[0], form.title.data, form.body.data, form.completion.data)
         return redirect('/tasklist')
     return render_template('edit.html', task=t[0], form=form)
 
