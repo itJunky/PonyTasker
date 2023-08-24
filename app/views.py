@@ -1,5 +1,5 @@
 from app import tasker
-from .forms import NewTaskForm
+from .forms import NewTaskForm, EditTaskForm
 from .models import Task
 from .common import createnewtask, tasklist
 from flask import render_template, redirect
@@ -39,6 +39,13 @@ def show_task(task_id):
     print(t)
     return render_template('task.html', task=t[0])
 
-# TODO Редактирование задачи
 
+# TODO Редактирование задачи
+@tasker.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    form = EditTaskForm()
+    if form.validate_on_submit():
+        return redirect('/tasklist')
+    t = select(t for t in Task if t.id == task_id)[:]
+    return render_template('edit.html', task=t[0], form=form)
 
