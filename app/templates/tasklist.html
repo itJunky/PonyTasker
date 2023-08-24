@@ -7,7 +7,10 @@
 <body>
     <h1>Список задач</h1>
     {% for task in tasklist %}
-        <li>{{ task }}</li>
+        <li><a href="/task/{{ task.id }}"> {{ task.title }}</a></li>
     {% endfor %}
+
+    <hr>
+    <a href="/">На главную</a> | <a href=/newtask>Новая задача</a>
 </body>
 </html>
