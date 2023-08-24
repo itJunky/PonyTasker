@@ -1,7 +1,7 @@
 from app import tasker
 from .forms import NewTaskForm, EditTaskForm
 from .models import Task
-from .common import createnewtask, tasklist
+from .common import createnewtask, tasklist, edittask
 from flask import render_template, redirect
 from pony.orm import select
 
@@ -44,8 +44,10 @@ def show_task(task_id):
 @tasker.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
     form = EditTaskForm()
-    if form.validate_on_submit():
-        return redirect('/tasklist')
     t = select(t for t in Task if t.id == task_id)[:]
+    if form.validate_on_submit():
+        # TODO сохранение изменений
+        edittask(t[0], form.title.data, form.body.data)
+        return redirect('/tasklist')
     return render_template('edit.html', task=t[0], form=form)
 
