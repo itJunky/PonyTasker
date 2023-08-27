@@ -9,8 +9,14 @@ def createnewtask(title, body):
     return print('ok')
 
 
-def tasklist():
-    return list(select(t for t in Task))
+def tasklist(sort):
+    lst = list(select(t for t in Task))
+    if sort == 'cmplup':
+        lst = sortdblsel(lst, 'up')
+    elif sort == 'cmpldwn':
+        lst = sortdblsel(lst, 'dwn')
+    # Todo добавлять другие виды сортировок сюда
+    return lst
 
 
 def edittask(task, title, body, completion):
@@ -18,3 +24,19 @@ def edittask(task, title, body, completion):
     task.body = body
     task.completion = completion
     return print('ok')
+
+
+def sortdblsel(tlist, stype):
+    # TODO зарефакторить на перебор исходного класса
+    completed = list()
+    uncompleted = list()
+    for i, el in enumerate(tlist):
+        if el.completion:
+            completed.append(el)
+        else:
+            uncompleted.append(el)
+
+    if stype == 'up':
+        return completed + uncompleted
+    else:
+        return uncompleted + completed

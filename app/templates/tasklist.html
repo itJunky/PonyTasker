@@ -6,10 +6,24 @@
 </head>
 <body>
     <h1>Список задач</h1>
-    <table>
+    <table style="border-collapse: collapse;">
         <tbody>
+            <tr style="border-bottom: 1pt solid black;">
+                <td>ID</td>
+                <td>Имя</td>
+                <td>
+                    Закрыта
+                    <a href="/tasklist?sort=cmplup">&uarr;</a>
+                    <a href="tasklist?sort=cmpldwn">&darr;</a>
+                </td>
+            </tr>
+
         {% for task in tasklist %}
-            <tr><td>{{ task.id }}</td><td><a href="/task/{{ task.id }}"> {{ task.title }}</a></td><td> {{ task.completion }}</td></tr>
+            <tr>
+                <td>{{ task.id }}</td>
+                <td><a href="/task/{{ task.id }}"> {{ task.title }}</a></td>
+                <td> {{ task.completion }}</td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>

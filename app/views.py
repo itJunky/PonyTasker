@@ -2,7 +2,7 @@ from app import tasker
 from .forms import NewTaskForm, EditTaskForm
 from .models import Task
 from .common import createnewtask, tasklist, edittask
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 from pony.orm import select
 
 
@@ -18,7 +18,8 @@ def index():
     # TODO помечать задачу выполненной
 @tasker.route('/tasklist')
 def show_tasks():
-    return render_template('tasklist.html', tasklist=tasklist())
+    sort = request.args.get('sort')
+    return render_template('tasklist.html', tasklist=tasklist(sort))
 
 
 # Добавление задачи
