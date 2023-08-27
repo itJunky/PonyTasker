@@ -6,10 +6,13 @@
 </head>
 <body>
     <h1>Список задач</h1>
-    {% for task in tasklist %}
-        <li><a href="/task/{{ task.id }}"> {{ task.title }}</a> {{ task.completion }}</li>
-    {% endfor %}
-
+    <table>
+        <tbody>
+        {% for task in tasklist %}
+            <tr><td>{{ task.id }}</td><td><a href="/task/{{ task.id }}"> {{ task.title }}</a></td><td> {{ task.completion }}</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
     <hr>
     <a href="/">На главную</a> | <a href=/newtask>Новая задача</a>
 </body>

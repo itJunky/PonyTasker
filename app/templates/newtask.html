@@ -4,16 +4,29 @@
 
 <form method="POST" action="/newtask">
     {{ form.csrf_token }}
-    {{ form.title.label }} &emsp;&emsp;&ensp;&nbsp; {{ form.title(size=20) }}
-    {% if form.title.errors %}
-        <ul class="errors">
-        {% for error in form.title %}
-            <li>{{ error }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    </br>
-    {{ form.body.label }} &nbsp;{{ form.body(size=20) }}
-    </br>
-    <input type="submit" value="Создать задачу">
+    <table>
+        <tbody>
+            <tr>
+                <td>{{ form.title.label }}</td><td>{{ form.title(size=20) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.body.label }}</td><td>{{ form.body(size=20) }}</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Создать задачу"></td>
+                <td>
+                    {% if form.title.errors or form.body.errors %}
+                        <ul class="errors">
+                        {% for error in form.title %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% for error in form.body %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
