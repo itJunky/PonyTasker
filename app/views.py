@@ -35,20 +35,25 @@ def create_new_task():
 # Отображение самой задачи
 @tasker.route('/task/<int:task_id>')
 def show_task(task_id):
-    t = select(t for t in Task if t.id == task_id)[:]
-    print(type(t))
-    print(t)
-    return render_template('task.html', task=t[0])
+    t = select(t for t in Task if t.id == task_id)
+    maxtasks = select(t.id for t in Task).max()
+    print(maxtasks)
+    if task_id > maxtasks:
+        return "Нет такой задачи"
+    return render_template('task.html', task=list(t)[0])
 
 
 # Редактирование задачи
 @tasker.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 def edit_task(task_id):
     form = EditTaskForm()
-    t = select(t for t in Task if t.id == task_id)[:]
+    maxtasks = select(t.id for t in Task).max()
+    print(maxtasks)
+    if task_id > maxtasks:
+        return "Нет такой задачи"
+    t = select(t for t in Task if t.id == task_id)
     if form.validate_on_submit():
         # TODO сохранение изменений
         edittask(t[0], form.title.data, form.body.data, form.completion.data)
         return redirect('/tasklist')
-    return render_template('edit.html', task=t[0], form=form)
-
+    return render_template('edit.html', task=list(t)[0], form=form)
